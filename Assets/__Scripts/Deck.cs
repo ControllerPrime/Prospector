@@ -18,6 +18,8 @@ public class Deck : MonoBehaviour {
 	public Sprite cardBackGold;
 	public Sprite cardFront;
 	public Sprite cardFrontGold;
+
+    //test
 	
 	
 	// Prefabs
