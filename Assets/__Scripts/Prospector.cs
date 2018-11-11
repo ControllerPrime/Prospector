@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 // An enum to handle all the possible scoring events
 public enum ScoreEvent
@@ -20,8 +21,7 @@ public class Prospector : MonoBehaviour
     static public int HIGH_SCORE = 0;
 
     public float reloadDelay = 1f; // The delay between rounds
-#pragma warning disable CS0618 // Type or member is obsolete
-    public GUIText gameOverText, roundResultText, highScoreText;
+    public Text gameOverText, roundResultText, highScoreText;
 
     public Vector3 fsPosMid = new Vector3(0.5f, 0.90f, 0);
     public Vector3 fsPosRun = new Vector3(0.5f, 0.75f, 0);
@@ -49,9 +49,8 @@ public class Prospector : MonoBehaviour
 
     public FloatingScore fsRun;
 
-#pragma warning disable CS0618 // Type or member is obsolete
-    public GUIText GTGameOver;
-    public GUIText GTRoundResult;
+    public Text GTGameOver;
+    public Text GTRoundResult;
 
     void Awake()
     {
@@ -72,24 +71,18 @@ public class Prospector : MonoBehaviour
         GameObject go = GameObject.Find("GameOver");
         if (go != null)
         {
-#pragma warning disable CS0618 // Type or member is obsolete
-            GTGameOver = go.GetComponent<GUIText>();
-#pragma warning restore CS0618 // Type or member is obsolete
+            GTGameOver = go.GetComponent<Text>();
         }
         go = GameObject.Find("RoundResult");
         if (go != null)
         {
-#pragma warning disable CS0618 // Type or member is obsolete
-            GTRoundResult = go.GetComponent<GUIText>();
-#pragma warning restore CS0618 // Type or member is obsolete
+            GTRoundResult = go.GetComponent<Text>();
         }
         // Make them invisible
         ShowResultGTs(false);
         go = GameObject.Find("HighScore");
         string hScore = "High Score: " + Utils.AddCommasToNumber(HIGH_SCORE);
-#pragma warning disable CS0618 // Type or member is obsolete
-        go.GetComponent<GUIText>().text = hScore;
-#pragma warning restore CS0618 // Type or member is obsolete
+        go.GetComponent<Text>().text = hScore;
     }
 
     void SetUpUITexts()
@@ -97,30 +90,24 @@ public class Prospector : MonoBehaviour
         GameObject go = GameObject.Find("HighScore");
         if (go != null)
         {
-#pragma warning disable CS0618 // Type or member is obsolete
-            highScoreText = go.GetComponent<GUIText>();
-#pragma warning restore CS0618 // Type or member is obsolete
+            highScoreText = go.GetComponent<Text>();
         }
         int highscore = HIGH_SCORE;
         string hScore = "High Score: " + Utils.AddCommasToNumber(highscore);
-#pragma warning disable CS0618 // Type or member is obsolete
-        go.GetComponent<GUIText>().text = hScore;
-#pragma warning restore CS0618 // Type or member is obsolete
+        go.GetComponent<Text>().text = hScore;
 
         go = GameObject.Find("GameOver");
         if (go != null)
         {
-#pragma warning disable CS0618 // Type or member is obsolete
-            gameOverText = go.GetComponent<GUIText>();
-#pragma warning restore CS0618 // Type or member is obsolete
+            //gameOverText = go.GetComponent<Text>();
+            GTGameOver = go.GetComponent<Text>();
         }
 
         go = GameObject.Find("RoundResult");
         if (go != null)
         {
-#pragma warning disable CS0618 // Type or member is obsolete
-            roundResultText = go.GetComponent<GUIText>();
-#pragma warning restore CS0618 // Type or member is obsolete
+            //roundResultText = go.GetComponent<Text>();
+            GTRoundResult = go.GetComponent<Text>();
         }
 
         ShowResultGTs(false);
@@ -409,22 +396,27 @@ public class Prospector : MonoBehaviour
         if (fsRun != null) score += fsRun.score;
         if (won)
         {
-            gameOverText.text = "Round Over";
-            roundResultText.text = "You won this round! \n Round Score: " + score;
+            //gameOverText.text = "Round Over";
+            GTGameOver.text = "Round Over";
+            //roundResultText.text = "You won this round! \n Round Score: " + score;
+            GTRoundResult.text = "You won this round! \n Round Score: " + score;
             ShowResultGTs(true);
             ScoreManager(ScoreEvent.gameWin);      // This replaces the old line
         }
         else
         {
-            gameOverText.text = "Game Over";
+            //gameOverText.text = "Game Over";
+            GTGameOver.text = "Game Over";
             if (HIGH_SCORE <= score)
             {
                 string str = "You got the high score!\n High score: " + score;
-                roundResultText.text = str;
+                //roundResultText.text = str;
+                GTRoundResult.text = str;
             }
             else
             {
-                roundResultText.text = "You final score was: " + score;
+                //roundResultText.text = "You final score was: " + score;
+                GTRoundResult.text = "You final score was: " + score;
             }
 
             ShowResultGTs(true);
