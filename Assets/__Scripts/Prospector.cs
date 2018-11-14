@@ -185,7 +185,7 @@ public class Prospector : MonoBehaviour
         }
         CardProspector cp;
         // Follow the layout
-        foreach (SlotDef tSD in layout.slotDefs)
+        /*foreach (SlotDef tSD in layout.slotDefs)
         {
             // ^ Iterate through all the SlotDefs in the layout.slotDefs as tSD
             cp = Draw(); // Pull a card from the top (beginning) of the drawPile
@@ -206,7 +206,7 @@ public class Prospector : MonoBehaviour
 
             // CardProspectors in the tableau have the state CardState.tableau
             tableau.Add(cp); // Add this CardProspector to the List<> tableau
-        }
+        }*/
 
         // Set which cards are hiding others
         foreach (CardProspector tCP in tableau)

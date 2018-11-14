@@ -243,7 +243,7 @@ public class Deck : MonoBehaviour
             tGO.name = "back";
             card.back = tGO;
             // Default to face-up
-            card.faceUp = false; // Use the property faceUp of Card
+            card.faceUp = true; // Use the property faceUp of Card
 
             // Add the card to the deck
             cards.Add(card);
